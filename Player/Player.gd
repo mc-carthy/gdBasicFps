@@ -14,6 +14,9 @@ var camera_vert: float = 0
 var camera_vert_limit: float = deg2rad(60)
 var is_jumping: bool = false
 
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
@@ -24,6 +27,9 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	is_jumping = true if Input.is_action_just_pressed('jump') else false
+	
+	if Input.is_action_just_pressed('ui_cancel'):
+		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	var head_basis: Basis = head.global_transform.basis
