@@ -4,11 +4,22 @@ export var speed: float = 10
 export var acceleration: float = 5
 export var gravity: float = -9.8
 export var jump_speed: float = 30
+export var mouse_sensitivity: float = 0.3
 
 onready var head: Spatial = $Head
 onready var camera: Camera = $Head/Camera
 
 var velocity := Vector3()
+var camera_vert: float = 0
+var camera_vert_limit: float = deg2rad(60)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+		
+		var vert_delta = deg2rad(-event.relative.y * mouse_sensitivity)
+		camera_vert = clamp(camera_vert + vert_delta, -camera_vert_limit, camera_vert_limit)
+		camera.rotation.x = camera_vert
 
 func _physics_process(delta: float) -> void:
 	var head_basis: Basis = head.global_transform.basis
