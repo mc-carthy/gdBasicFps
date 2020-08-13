@@ -1,4 +1,5 @@
 extends Node
+class_name Weapon
 
 export var fire_rate: float = 0.5
 export var clip_size: int = 5
