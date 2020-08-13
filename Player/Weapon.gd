@@ -6,10 +6,14 @@ export var clip_size: int = 5
 export var reload_speed: float = 1
 
 onready var raycast: RayCast = $'../Head/Camera/RayCast'
+onready var ammo_label: Label = $'/root/World/UI/Label'
 
 var current_ammo: int = clip_size
 var can_fire: bool = true
 var is_reloading: bool = false
+
+func _ready() -> void:
+	ammo_label.set_text('Ammo: %d/%d' % [current_ammo, clip_size])
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('fire_primary') and can_fire:
@@ -28,6 +32,7 @@ func fire() -> void:
 			yield(get_tree().create_timer(reload_speed), 'timeout')
 			is_reloading = false
 			current_ammo = clip_size
+	ammo_label.set_text('Ammo: %d/%d' % [current_ammo, clip_size])
 
 func check_collision() -> void:
 	if raycast.is_colliding():
