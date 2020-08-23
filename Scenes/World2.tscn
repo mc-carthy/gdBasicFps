@@ -20,7 +20,7 @@ albedo_color = Color( 0.247059, 0.768627, 0.317647, 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.203, 0, 12.8602 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 11.203, 0, 12.8602 )
 
 [node name="Environment" type="Spatial" parent="."]
 
