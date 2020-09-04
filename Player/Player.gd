@@ -7,7 +7,7 @@ export var jump_speed: float = 30
 export var mouse_sensitivity: float = 0.3
 
 onready var head: Spatial = $Head
-onready var camera: Camera = $Head/Camera
+onready var camera: Camera = $Head/WorldCamera
 
 var velocity := Vector3()
 var camera_vert: float = 0

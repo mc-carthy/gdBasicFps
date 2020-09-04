@@ -5,7 +5,7 @@ export var fire_rate: float = 0.5
 export var clip_size: int = 5
 export var reload_speed: float = 1
 
-onready var raycast: RayCast = $'../Head/Camera/RayCast'
+onready var raycast: RayCast = $'../Head/WorldCamera/RayCast'
 onready var ammo_label: Label = $'/root/World/UI/Label'
 
 var current_ammo: int = clip_size

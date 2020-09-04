@@ -73,6 +73,11 @@ interact={
  ]
 }
 
+[layer_names]
+
+3d_render/layer_1="World"
+3d_render/layer_2="Weapons"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
