@@ -38,7 +38,12 @@ script = ExtResource( 3 )
 [node name="Weapons" type="Spatial" parent="Head/WorldCamera"]
 
 [node name="gun" parent="Head/WorldCamera/Weapons" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159, -0.264, -0.236 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159, -0.264, -0.14 )
+script = ExtResource( 2 )
+raycast_path = NodePath("../../RayCast")
+camera_path = NodePath("../..")
+default_transform = Vector3( 0.159, -0.264, -0.14 )
+aim_transform = Vector3( 0, -0.225, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.375, 0 )
@@ -48,9 +53,6 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.375, 0 )
 mesh = SubResource( 2 )
 material/0 = null
-
-[node name="Weapon" type="Node" parent="."]
-script = ExtResource( 2 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -67,5 +69,6 @@ render_target_update_mode = 3
 
 [node name="WeaponCamera" type="Camera" parent="ViewportContainer/Viewport"]
 cull_mask = 2
+near = 0.01
 script = ExtResource( 5 )
 camera_path = NodePath("../../../Head/WorldCamera")

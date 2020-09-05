@@ -1,11 +1,19 @@
-extends Node
+extends Spatial
 class_name Weapon
 
 export var fire_rate: float = 0.5
 export var clip_size: int = 5
 export var reload_speed: float = 1
+export var raycast_path: NodePath
+export var camera_path: NodePath
+export var default_transform: Vector3
+export var aim_transform: Vector3
+export var default_fov: float = 70
+export var aim_fov: float = 55
+export var aim_time: float = 0.3
 
-onready var raycast: RayCast = $'../Head/WorldCamera/RayCast'
+onready var raycast: RayCast = get_node(raycast_path)
+onready var camera: Camera = get_node(camera_path)
 onready var ammo_label: Label = $'/root/World/UI/Label'
 
 var current_ammo: int = clip_size
@@ -24,6 +32,13 @@ func _process(delta: float) -> void:
 				reload()
 	if Input.is_action_just_pressed('reload') and not is_reloading:
 		reload()
+	if Input.is_action_pressed("aim"):
+		transform.origin = transform.origin.linear_interpolate(aim_transform, aim_time)
+		camera.fov = lerp(camera.fov, aim_fov, aim_time)
+	else:
+		if transform.origin != default_transform:
+			transform.origin = transform.origin.linear_interpolate(default_transform, aim_time)
+			camera.fov = lerp(camera.fov, default_fov, aim_time)
 
 func fire() -> void:
 		can_fire = false
